@@ -1,94 +1,157 @@
-# Geometric Shapes Drawing Project
+# 🧩 Geometric Shapes Drawing Project
 
-![Example Output](instructions.png)
+<div style="display: flex; gap: 3em;">
+<img src="instructions.png" alt="Example Output" width="400" height="300">
+<p align="left">
+    Welcome to the <em>Geometric Shapes Drawing</em> tool — a Rust-powered application that renders 2D and basic 3D shapes to PNG images. Whether you're exploring computer graphics or testing your Rust skills, this project offers a modular and extensible foundation.
+</p>
+</div>
 
-## Table of Contents
+---
 
-- [Geometric Shapes Drawing Project](#geometric-shapes-drawing-project)
-  - [Table of Contents](#table-of-contents)
-  - [Project Overview](#project-overview)
-  - [Features](#features)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Project Structure](#project-structure)
-  - [Authors](#authors)
-  - [Contributing](#contributing)
-  - [License](#license)
+## 📚 Table of Contents
 
-## Project Overview
+- [🧩 Geometric Shapes Drawing Project](#-geometric-shapes-drawing-project)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [🚀 Overview](#-overview)
+  - [✨ Features](#-features)
+  - [⚙️ Quick Start](#️-quick-start)
+    - [1. Clone and Build](#1-clone-and-build)
+    - [2. Run the Program.](#2-run-the-program)
+  - [🧪 Usage](#-usage)
+    - [💡 Default Run](#-default-run)
+    - [🧪 Run with Debug Info](#-run-with-debug-info)
+    - [🧹 Clean Build Files](#-clean-build-files)
+    - [📦 Rebuild Everything](#-rebuild-everything)
+  - [📁 Project Structure](#-project-structure)
+  - [👥 Authors](#-authors)
+  - [🤝 Contributing](#-contributing)
+  - [📜 License](#-license)
 
-A Rust implementation for rendering geometric shapes to PNG images, featuring:
+---
 
-- Modular shape implementations
+## 🚀 Overview
+
+This project allows you to render geometric shapes and export them as PNG images. It's written in **Rust** with a focus on:
+
+- Clean modular code
 - Random shape generation
-- Trait-based drawing system
-- Bonus 3D shape support
+- Trait-based extensibility
+- Simple 3D projections for bonus content
 
-## Features
+---
 
-✅ Core Shapes: Point, Line, Triangle, Rectangle, Circle  
-⭐ Bonus: Pentagon, Cube projections  
-🎨 Customizable colors and dimensions  
-🔄 Random shape generation utilities  
+## ✨ Features
 
-## Installation
+- ✅ **Core Shapes**: Point, Line, Triangle, Rectangle, Circle  
+- 🔷 **Bonus**: Pentagon, 3D Cube projection  
+- 🎨 **Customizable**: Shape colors and dimensions  
+- 🔄 **Randomizer**: Generate random shapes with ease  
+- 📦 **Portable**: Run with simple terminal commands
+
+---
+
+## ⚙️ Quick Start
+
+### 1. Clone and Build
 
 ```bash
-git https://learn.zone01kisumu.ke/git/adaniel/drawing
+git clone https://learn.zone01kisumu.ke/git/adaniel/drawing
 cd drawing
-cargo build
+make setup
 ```
 
-## Usage
+### 2. Run the Program.
 
-```rust
-cargo run
+```sh
+make run
 ```
 
-## Project Structure
+- No need to remember long Cargo commands anymore — we've got a Makefile for that!
+
+## 🧪 Usage
+
+### 💡 Default Run
+
+```sh
+make run
+```
+
+### 🧪 Run with Debug Info
+
+```sh
+make debug
+```
+
+### 🧹 Clean Build Files
+
+```sh
+make clean
+```
+
+### 📦 Rebuild Everything
+
+```sh
+make rebuild
+```
+
+- The Makefile simplifies building, running, and cleaning up. Modify it to extend functionality as needed.
+
+---
+
+## 📁 Project Structure
 
 ```sh
 .
 ├── src/
 │   ├── main.rs
-│   └── geometrical_shapes/ # Shape implementations
-│       ├── mod.rs         # Module declarations and trait definitions
-│       ├── point.rs       # 2D point implementation
-│       ├── line.rs        # Line segment between points
-│       ├── triangle.rs    # Three-sided polygon
-│       ├── circle.rs      # Circular shape with radius
-│       ├── polygon.rs     # Base polygon functionality
-│       ├── pentagon.rs    # Five-sided polygon (bonus)
-│       └── cube.rs        # 3D cube projection (bonus)
-├── .gitignore
+│   └── geometrical_shapes/
+│       ├── mod.rs
+│       ├── point.rs
+│       ├── line.rs
+│       ├── triangle.rs
+│       ├── circle.rs
+│       ├── polygon.rs
+│       ├── pentagon.rs
+│       └── cube.rs
+├── Makefile
 ├── Cargo.toml
+├── .gitignore
 ├── Instructions.md
 ├── instructions.png
-└── Readme.md
+└── README.md
 ```
 
-## Authors
+## 👥 Authors
 
-**Core Team**:
+- Core Team:
 
-- [rcaleb](https://github.com/) - Project architecture
-- [Anxiel Ray](https://github.com/anxielray) - Shape algorithms
-- [adaniel](https://github.com/) - Shape algorithms
+    [rcaleb](https://github.com/Raymond9734) — Architecture & structure
 
-## Contributing
+    [Anxiel Ray](https://github.com/anxielray) — Shape logic
 
-We welcome contributions! Please follow these steps:
+    [adaniel](https://github.com/adiozdaniel) — Geometry & rendering
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🤝 Contributing
 
-See our [Contribution Guidelines](CONTRIBUTING.md) for details.
+- *We welcome PRs!* 🚀
 
-## License
+  1. Fork the repo
 
-- This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
+  2. Create a feature branch:
+  git checkout -b feature/your-feature
 
----
+  3. Commit changes:
+  git commit -m "Add new feature"
+
+  4. Push to your branch:
+  git push origin feature/your-feature
+
+  5. Submit a Pull Request 📝
+
+- *Read the Contribution Guidelines for more.*
+
+## 📜 License
+
+- This project is licensed under the MIT License.
+- See [LICENSE](LICENSE.md) for full details.
