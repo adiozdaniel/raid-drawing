@@ -1,7 +1,7 @@
-use super::{Drawable};
+use super::Drawable;
 use crate::geometrical_shapes::Displayable;
-use raster::{Color, Image};
 use rand::Rng;
+use raster::{Color, Image};
 
 #[derive(Debug, Clone)]
 pub struct Point {
@@ -12,14 +12,14 @@ pub struct Point {
 
 impl Point {
     pub fn new(x: i32, y: i32) -> Self {
-        Point { 
-            x, 
+        Point {
+            x,
             y,
             color: Color::rgb(
                 rand::thread_rng().gen_range(50..200),
                 rand::thread_rng().gen_range(50..200),
                 rand::thread_rng().gen_range(50..200),
-            )
+            ),
         }
     }
 
@@ -32,7 +32,7 @@ impl Point {
                 rng.gen_range(50..200),
                 rng.gen_range(50..200),
                 rng.gen_range(50..200),
-            )
+            ),
         }
     }
 }
