@@ -1,35 +1,38 @@
-Here's the enhanced **README.md** with author and contribution sections following traditional open-source project format:
-
----
-
 # Geometric Shapes Drawing Project
 
 ![Example Output](instructions.png)
 
 ## Table of Contents
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Authors](#authors)
-- [Contributing](#contributing)
-- [License](#license)
+
+- [Geometric Shapes Drawing Project](#geometric-shapes-drawing-project)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Project Structure](#project-structure)
+  - [Authors](#authors)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Project Overview
+
 A Rust implementation for rendering geometric shapes to PNG images, featuring:
+
 - Modular shape implementations
 - Random shape generation
 - Trait-based drawing system
 - Bonus 3D shape support
 
 ## Features
+
 ✅ Core Shapes: Point, Line, Triangle, Rectangle, Circle  
 ⭐ Bonus: Pentagon, Cube projections  
 🎨 Customizable colors and dimensions  
 🔄 Random shape generation utilities  
 
 ## Installation
+
 ```bash
 git https://learn.zone01kisumu.ke/git/adaniel/drawing
 cd drawing
@@ -37,12 +40,14 @@ cargo build
 ```
 
 ## Usage
+
 ```rust
 cargo run
 ```
 
 ## Project Structure
-```
+
+```sh
 .
 ├── src/
 │   ├── main.rs
@@ -63,13 +68,17 @@ cargo run
 ```
 
 ## Authors
+
 **Core Team**:
-- [rcaleb](https://learn.zone01kisumu.ke/git/rcaleb) - Project architecture
-- [rogwel](https://learn.zone01kisumu.ke/git/rogwel) - Shape algorithms
-- [adaniel](https://learn.zone01kisumu.ke/git/adaniel) - Shape algorithms
+
+- [rcaleb](https://github.com/) - Project architecture
+- [Anxiel Ray](https://github.com/anxielray) - Shape algorithms
+- [adaniel](https://github.com/) - Shape algorithms
 
 ## Contributing
+
 We welcome contributions! Please follow these steps:
+
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
@@ -79,6 +88,7 @@ We welcome contributions! Please follow these steps:
 See our [Contribution Guidelines](CONTRIBUTING.md) for details.
 
 ## License
-This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
+
+- This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
