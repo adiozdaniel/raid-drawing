@@ -5,8 +5,7 @@ use raster::{Color, Image};
 
 #[derive(Debug)]
 pub struct Cubes {
-    cubes: Vec<(Point, i32)>,
-    color: Color,
+    cubes: Vec<(Point, i32, Color)>,
 }
 
 impl Cubes {
@@ -14,17 +13,18 @@ impl Cubes {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();
 
-        let color = Color::rgb(
-            rng.gen_range(150..255),
-            rng.gen_range(150..255),
-            rng.gen_range(150..255),
-        );
-
         for _ in 0..rng.gen_range(3..6) {
-            cubes.push((Point::random(width, height), rng.gen_range(30..80)));
+            let center = Point::random(width, height);
+            let size = rng.gen_range(30..80);
+            let color = Color::rgb(
+                rng.gen_range(150..255),
+                rng.gen_range(150..255),
+                rng.gen_range(150..255),
+            );
+            cubes.push((center, size, color));
         }
 
-        Cubes { cubes, color }
+        Cubes { cubes }
     }
 
     fn get_isometric_projection(center: &Point, size: i32) -> [Point; 8] {
@@ -44,6 +44,7 @@ impl Cubes {
     }
 }
 
+/// Helper function that draws a line with a fixed color between two points using Bresenham's algorithm.
 fn draw_line_with_color(
     start: &Point,
     end: &Point,
@@ -86,7 +87,7 @@ fn draw_line_with_color(
 
 impl Drawable for Cubes {
     fn draw(&self, image: &mut Image) {
-        for (center, size) in &self.cubes {
+        for (center, size, color) in &self.cubes {
             let vertices = Cubes::get_isometric_projection(center, *size);
 
             let edges = [
@@ -103,12 +104,12 @@ impl Drawable for Cubes {
             for (i, j) in edges.iter() {
                 let start = &vertices[*i];
                 let end = &vertices[*j];
-                draw_line_with_color(start, end, edge_thickness, image, &self.color);
+                draw_line_with_color(start, end, edge_thickness, image, color);
             }
         }
     }
 
     fn color(&self) -> Color {
-        self.color.clone()
+        Color::rgb(0, 0, 0)
     }
 }
