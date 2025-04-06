@@ -50,9 +50,14 @@ impl Drawable for Circle {
                     (y, -x),
                     (x, -y),
                 ] {
-                    image.display(center.x + dx, center.y + dy, self.color());
-                }
+                    let px = center.x + dx;
+                    let py = center.y + dy;
 
+                    image.display(px, py, self.color());
+                    image.display(px + 1, py, self.color());
+                    image.display(px, py + 1, self.color());
+                }
+                
                 y += 1;
                 err += 1 + 2 * y;
                 if 2 * (err - x) + 1 > 0 {
