@@ -48,14 +48,11 @@ impl Drawable for Pentagon {
             for i in 0..5 {
                 let start = &vertices[i];
                 let end = &vertices[(i + 1) % 5];
-
-                for offset in -1..=1 {
-                    let adjusted_start = Point::new(start.x + offset, start.y + offset);
-                    let adjusted_end = Point::new(end.x + offset, end.y + offset);
-                    // Create line with the pentagon's color
-                    let line = Line::from_points(&adjusted_start, &adjusted_end);
-                    line.draw(image);
-                }
+                let adjusted_start = Point::new(start.x, start.y);
+                let adjusted_end = Point::new(end.x, end.y);
+                let line = Line::from_points(&adjusted_start, &adjusted_end);
+                
+                line.draw(image);
             }
         }
     }
