@@ -126,11 +126,11 @@ make rebuild
 
 - Core Team:
 
-    [rcaleb](https://github.com/Raymond9734) — Architecture & structure
+    [Ray Madara](https://github.com/Raymond9734) ➜ Architecture & structure
 
-    [Anxiel Ray](https://github.com/anxielray) — Shape logic
+    [Adioz](https://github.com/adiozdaniel) ➜ Geometry & rendering
 
-    [adaniel](https://github.com/adiozdaniel) — Geometry & rendering
+    [Anxiel Ray](https://github.com/anxielray) ➜ Shape logic
 
 ## 🤝 Contributing
 
@@ -149,7 +149,7 @@ make rebuild
 
   5. Submit a Pull Request 📝
 
-- *Read the Contribution Guidelines for more.*
+- *Read the [Contribution Guidelines](ONTRIBUTION.md) for more.*
 
 ## 📜 License
 
