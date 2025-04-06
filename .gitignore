@@ -1,5 +1,3 @@
-# ignore rust build files
 target/
 
-# ignore generated images
 *.png
