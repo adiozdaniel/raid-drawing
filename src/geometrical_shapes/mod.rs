@@ -11,7 +11,11 @@ pub use self::line::Line;
 pub use self::rectangle::Rectangle;
 pub use self::triangle::Triangle;
 pub use self::circle::Circle;
+
+#[allow(unused_imports)]
 pub use self::pentagon::Pentagon;
+
+#[allow(unused_imports)]
 pub use self::cubes::Cubes;
 
 use raster::{Color, Image};
