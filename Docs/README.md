@@ -103,17 +103,6 @@ make rebuild
 
 ```sh
 .
-├── src/
-│   ├── main.rs
-│   └── geometrical_shapes/
-│       ├── mod.rs
-│       ├── point.rs
-│       ├── line.rs
-│       ├── triangle.rs
-│       ├── circle.rs
-│       ├── polygon.rs
-│       ├── pentagon.rs
-│       └── cube.rs
 ├── Docs/
 │   ├──  media/
 │   |     └── instructions.png
@@ -121,9 +110,21 @@ make rebuild
 │   ├── INSTRUCTIONS.md
 │   ├── LICENSE.md
 │   └── README.md
+├── src/
+│   ├── geometrical_shapes/
+│   |    ├── circle.rs
+│   |    └── cube.rs
+│   |    ├── line.rs
+│   |    ├── mod.rs
+│   |    ├── pentagon.rs
+│   |    ├── point.rs
+│   |    ├── rectangle.rs
+│   |    └── triangle.rs
+│   └── main.rs
 │
 ├── .gitignore
 ├── Cargo.toml
+├── Cargo.lock
 └── Makefile
 ```
 
