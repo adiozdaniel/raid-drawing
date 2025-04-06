@@ -1,5 +1,4 @@
 use super::{Drawable, Line, Point};
-// use crate::geometrical_shapes::Displayable;
 use rand::Rng;
 use raster::{Color, Image};
 
@@ -10,28 +9,6 @@ pub struct Cubes {
 }
 
 impl Cubes {
-    // pub fn new(position: &Point, size: i32) -> Self {
-    //     let mut rng = rand::thread_rng();
-    //     let mut cubes = Vec::new();
-
-    //     let color = Color::rgb(
-    //         rng.gen_range(150..255),
-    //         rng.gen_range(150..255),
-    //         rng.gen_range(150..255),
-    //     );
-
-    //     for _ in 0..rng.gen_range(3..6) {
-    //         let offset_x = rng.gen_range(-size..size);
-    //         let offset_y = rng.gen_range(-size..size);
-    //         cubes.push((
-    //             Point::new(position.x + offset_x, position.y + offset_y),
-    //             rng.gen_range(size / 2..size * 3 / 2).max(20),
-    //         ));
-    //     }
-
-    //     Cubes { cubes, color }
-    // }
-
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();

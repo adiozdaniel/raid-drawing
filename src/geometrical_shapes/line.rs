@@ -2,7 +2,6 @@ use super::{Drawable, Point};
 use crate::geometrical_shapes::Displayable;
 use rand::Rng;
 use raster::{Color, Image};
-// use std::sync::atomic::{AtomicUsize, Ordering};
 
 pub struct Line {
     start: Point,
@@ -12,35 +11,6 @@ pub struct Line {
 }
 
 impl Line {
-    // pub fn new(_p1: &Point, _p2: &Point) -> Self {
-    //     static COUNTER: AtomicUsize = AtomicUsize::new(0);
-    //     let mut rng = rand::thread_rng();
-    //     let count = COUNTER.fetch_add(1, Ordering::Relaxed);
-
-    //     let start = Point::random(1000, 1000);
-    //     let (dx, dy) = if count == 0 {
-    //         (rng.gen_range(300..500), rng.gen_range(300..500))
-    //     } else {
-    //         (rng.gen_range(50..120), rng.gen_range(50..120))
-    //     };
-
-    //     let end = Point::new(
-    //         (start.x + dx).min(999),
-    //         (start.y + dy).min(999),
-    //     );
-
-    //     Line {
-    //         start,
-    //         end,
-    //         thickness: rng.gen_range(2..5),
-    //         color: Color::rgb(
-    //             rng.gen_range(50..200),
-    //             rng.gen_range(50..200),
-    //             rng.gen_range(50..200),
-    //         ),
-    //     }
-    // }
-
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         Line {

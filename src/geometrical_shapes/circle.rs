@@ -9,23 +9,6 @@ pub struct Circle {
 }
 
 impl Circle {
-    // pub fn new(_center: &Point, _radius: i32) -> Self {
-    //     let mut rng = rand::thread_rng();
-    //     let mut circles = Vec::new();
-
-    //     let color = Color::rgb(
-    //         rng.gen_range(50..200),
-    //         rng.gen_range(50..200),
-    //         rng.gen_range(50..200),
-    //     );
-
-    //     for _ in 0..rng.gen_range(1..2) {
-    //         circles.push((Point::random(900, 900), rng.gen_range(50..150)));
-    //     }
-
-    //     Circle { circles, color }
-    // }
-
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();

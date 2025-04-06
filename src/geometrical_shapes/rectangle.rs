@@ -1,5 +1,4 @@
 use super::{Drawable, Line, Point};
-// use crate::geometrical_shapes::Displayable;
 use rand::Rng;
 use raster::{Color, Image};
 

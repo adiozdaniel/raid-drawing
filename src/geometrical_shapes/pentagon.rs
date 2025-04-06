@@ -10,28 +10,6 @@ pub struct Pentagon {
 }
 
 impl Pentagon {
-    // pub fn new(center: &Point, radius: i32) -> Self {
-    //     let mut rng = rand::thread_rng();
-    //     let mut pentagons = Vec::new();
-
-    //     let color = Color::rgb(
-    //         rng.gen_range(150..255),
-    //         rng.gen_range(150..255),
-    //         rng.gen_range(150..255),
-    //     );
-
-    //     for _ in 0..rng.gen_range(3..6) {
-    //         let offset_x = rng.gen_range(-100..100);
-    //         let offset_y = rng.gen_range(-100..100);
-    //         pentagons.push((
-    //             Point::new(center.x + offset_x, center.y + offset_y),
-    //             rng.gen_range(radius - 20..radius + 20).max(10),
-    //         ));
-    //     }
-
-    //     Pentagon { pentagons, color }
-    // }
-
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
