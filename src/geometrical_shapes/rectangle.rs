@@ -7,8 +7,23 @@ pub struct Rectangle {
     rects: Vec<(Point, Point, Color)>,
 }
 
+#[allow(dead_code)]
 impl Rectangle {
-    pub fn new(_p1: &Point, _p2: &Point) -> Self {
+    pub fn new(p1: &Point, p2: &Point) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut rects = Vec::new();
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+
+        rects.push((p1.clone(), p2.clone(), color));
+
+        Rectangle { rects }
+    }
+
+    pub fn random(_p1: &Point, _p2: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
 
