@@ -7,7 +7,7 @@ use raster::{Color, Image};
 pub struct Point {
     pub x: i32,
     pub y: i32,
-    color: Color,
+    pub color: Color,
 }
 
 impl Point {
