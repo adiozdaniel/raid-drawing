@@ -19,10 +19,15 @@ impl Circle {
             rng.gen_range(50..200),
         );
 
-        for _ in 0..rng.gen_range(1..2) {
-            circles.push((Point::random(width, height), rng.gen_range(50..150)));
+        if rng.gen_bool(0.7) {
+            let radius = if rng.gen_bool(0.3) {
+                rng.gen_range(150..300)
+            } else {
+                rng.gen_range(50..150)
+            };
+            circles.push((Point::random(width, height), radius));
         }
-
+        
         Circle { circles, color }
     }
 }
