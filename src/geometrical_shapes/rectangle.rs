@@ -1,5 +1,4 @@
-use super::{Drawable, Point};
-use crate::geometrical_shapes::Displayable;
+use super::{Drawable, Point, Line};
 use rand::Rng;
 use raster::{Color, Image};
 
@@ -29,46 +28,6 @@ impl Rectangle {
     }
 }
 
-fn draw_line_with_color(
-    start: &Point,
-    end: &Point,
-    thickness: i32,
-    image: &mut Image,
-    color: &Color,
-) {
-    let dx = (end.x - start.x).abs();
-    let dy = (end.y - start.y).abs();
-    let sx = if start.x < end.x { 1 } else { -1 };
-    let sy = if start.y < end.y { 1 } else { -1 };
-    let err = dx - dy;
-
-    for t in 0..thickness {
-        let offset = t - thickness / 2;
-        let mut x = start.x;
-        let mut y = start.y;
-        let mut local_err = err;
-        loop {
-            if dx > dy {
-                image.display(x, y + offset, color.clone());
-            } else {
-                image.display(x + offset, y, color.clone());
-            }
-            if x == end.x && y == end.y {
-                break;
-            }
-            let e2 = 2 * local_err;
-            if e2 > -dy {
-                local_err -= dy;
-                x += sx;
-            }
-            if e2 < dx {
-                local_err += dx;
-                y += sy;
-            }
-        }
-    }
-}
-
 impl Drawable for Rectangle {
     fn draw(&self, image: &mut Image) {
         let thickness = 2;
@@ -76,11 +35,15 @@ impl Drawable for Rectangle {
         for (p1, p2, color) in &self.rects {
             let top_right = Point::new(p2.x, p1.y);
             let bottom_left = Point::new(p1.x, p2.y);
+            let top_edge = Line::from_points(p1, &top_right, thickness, color.clone());
+            let right_edge = Line::from_points(&top_right, p2, thickness, color.clone());
+            let bottom_edge = Line::from_points(p2, &bottom_left, thickness, color.clone());
+            let left_edge = Line::from_points(&bottom_left, p1, thickness, color.clone());
 
-            draw_line_with_color(p1, &top_right, thickness, image, color);
-            draw_line_with_color(&top_right, p2, thickness, image, color);
-            draw_line_with_color(p2, &bottom_left, thickness, image, color);
-            draw_line_with_color(&bottom_left, p1, thickness, image, color);
+            top_edge.draw(image);
+            right_edge.draw(image);
+            bottom_edge.draw(image);
+            left_edge.draw(image);
         }
     }
 
