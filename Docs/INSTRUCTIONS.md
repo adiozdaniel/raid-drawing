@@ -4,7 +4,7 @@
 
 The purpose of this exercise is to create an image like the example below:
 
-![example](instructions.png)
+![example](media/instructions.png)
 
 You will need to do the following:
 
