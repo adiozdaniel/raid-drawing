@@ -61,13 +61,9 @@ impl Drawable for Cubes {
             for (i, j) in edges.iter() {
                 let start = &vertices[*i];
                 let end = &vertices[*j];
-
-                for offset in -1..=1 {
-                    let adjusted_start = Point::new(start.x + offset, start.y + offset);
-                    let adjusted_end = Point::new(end.x + offset, end.y + offset);
-                    let line = Line::from_points(&adjusted_start, &adjusted_end);
-                    line.draw(image);
-                }
+                let line = Line::from_points(start, end);
+                
+                line.draw(image);
             }
         }
     }
