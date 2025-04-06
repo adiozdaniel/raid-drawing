@@ -8,6 +8,7 @@ pub struct Pentagon {
     pentagons: Vec<(Point, i32, Color)>,
 }
 
+#[allow(dead_code)]
 impl Pentagon {
     pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();

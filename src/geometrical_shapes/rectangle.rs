@@ -7,8 +7,29 @@ pub struct Rectangle {
     rects: Vec<(Point, Point, Color)>,
 }
 
+#[allow(dead_code)]
 impl Rectangle {
-    pub fn new(_p1: &Point, _p2: &Point) -> Self {
+    pub fn new(p1: &Point, p2: &Point) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut rects = Vec::new();
+
+        let rect_height = p1.y + p2.y;
+        let rect_width = p2.x + p2.x;
+
+        let top_left = Point::new(p2.x, p2.y);
+        let bottom_right = Point::new(top_left.x + rect_width, top_left.y + rect_height);
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+
+        rects.push((top_left, bottom_right, color));
+        Rectangle { rects }
+    }
+
+
+    pub fn random(_p1: &Point, _p2: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
 
@@ -35,6 +56,7 @@ impl Drawable for Rectangle {
         for (p1, p2, color) in &self.rects {
             let top_right = Point::new(p2.x, p1.y);
             let bottom_left = Point::new(p1.x, p2.y);
+
             let top_edge = Line::from_points(p1, &top_right, thickness, color.clone());
             let right_edge = Line::from_points(&top_right, p2, thickness, color.clone());
             let bottom_edge = Line::from_points(p2, &bottom_left, thickness, color.clone());

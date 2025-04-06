@@ -6,8 +6,24 @@ pub struct Triangle {
     tris: Vec<(Point, Point, Point, Color)>,
 }
 
+#[allow(dead_code)]
 impl Triangle {
-    pub fn new(_a: &Point, _b: &Point, _c: &Point) -> Self {
+    pub fn new(a: &Point, b: &Point, c: &Point) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut tris = Vec::new();
+
+        let color = Color::rgb(
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+        );
+
+        tris.push((a.clone(), b.clone(), c.clone(), color));
+
+        Triangle { tris }
+    }
+
+    pub fn random(_a: &Point, _b: &Point, _c: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut tris = Vec::new();
 
