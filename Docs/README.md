@@ -114,12 +114,17 @@ make rebuild
 │       ├── polygon.rs
 │       ├── pentagon.rs
 │       └── cube.rs
-├── Makefile
-├── Cargo.toml
+├── Docs/
+│   ├──  media/
+│   |     └── instructions.png
+│   ├── CONTRIBUTIONS.md
+│   ├── INSTRUCTIONS.md
+│   ├── LICENSE.md
+│   └── README.md
+│
 ├── .gitignore
-├── Instructions.md
-├── instructions.png
-└── README.md
+├── Cargo.toml
+└── Makefile
 ```
 
 ## 👥 Authors
