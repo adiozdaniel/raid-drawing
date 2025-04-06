@@ -1,10 +1,10 @@
-## drawing
+## Drawing
 
 ### Instructions
 
 The purpose of this exercise is to create an image like the example below:
 
-![example](image.png)
+![example](instructions.png)
 
 You will need to do the following:
 
