@@ -22,6 +22,13 @@ impl Point {
         }
     }
 
+    // Add the distance method to calculate the Euclidean distance between two points
+    pub fn distance(&self, other: &Point) -> i32 {
+        let dx = self.x - other.x;
+        let dy = self.y - other.y;
+        ((dx * dx + dy * dy) as f64).sqrt() as i32
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         Point {

@@ -7,7 +7,23 @@ pub struct Circle {
     color: Color,
 }
 
+#[allow(dead_code)]
 impl Circle {
+    pub fn new(center: &Point, radius_point: &Point) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut circles = Vec::new();
+        let radius = center.distance(radius_point);
+        let color = Color::rgb(
+            rng.gen_range(50..200),
+            rng.gen_range(50..200),
+            rng.gen_range(50..200),
+        );
+
+        circles.push((center.clone(), radius));
+
+        Circle { circles, color }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();
