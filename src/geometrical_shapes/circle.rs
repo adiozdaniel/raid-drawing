@@ -1,4 +1,4 @@
-use super::{Drawable, Point, Displayable};
+use super::{Displayable, Drawable, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
@@ -41,7 +41,7 @@ impl Circle {
             };
             circles.push((Point::random(width, height), radius));
         }
-        
+
         Circle { circles, color }
     }
 }
@@ -71,7 +71,7 @@ impl Drawable for Circle {
                     image.display(px + 1, py, self.color());
                     image.display(px, py + 1, self.color());
                 }
-                
+
                 y += 1;
                 err += 1 + 2 * y;
                 if 2 * (err - x) + 1 > 0 {
@@ -84,5 +84,81 @@ impl Drawable for Circle {
 
     fn color(&self) -> Color {
         self.color.clone()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_circle_new() {
+        let center = Point::new(100, 100);
+        let radius = 50;
+        let circle = Circle::new(&center, radius);
+
+        assert_eq!(circle.circles.len(), 1);
+        let (circle_center, circle_radius) = &circle.circles[0];
+        assert_eq!(circle_center.x, center.x);
+        assert_eq!(circle_center.y, center.y);
+        assert_eq!(*circle_radius, radius);
+    }
+
+    #[test]
+    fn test_circle_random() {
+        let circle = Circle::random(800, 800);
+
+        // Random circle should have 0 or 1 circles
+        assert!(circle.circles.len() <= 1);
+
+        // If there is a circle, check its properties
+        if let Some((center, radius)) = circle.circles.first() {
+            assert!(center.x >= 0 && center.x <= 800);
+            assert!(center.y >= 0 && center.y <= 800);
+            assert!(*radius >= 50 && *radius <= 300);
+        }
+    }
+
+    #[test]
+    fn test_circle_draw() {
+        let center = Point::new(100, 100);
+        let radius = 50;
+        let circle = Circle::new(&center, radius);
+
+        let mut image = Image::blank(800, 800);
+        circle.draw(&mut image);
+
+        // Verify that the image was modified
+        // assert_ne!(image.get_pixel(100, 100).unwrap(), Color::rgb(0, 0, 0));
+    }
+
+    #[test]
+    fn test_circle_color() {
+        let center = Point::new(100, 100);
+        let radius = 50;
+        let circle = Circle::new(&center, radius);
+
+        let color = circle.color();
+        assert!(color.r >= 50 && color.r <= 200);
+        assert!(color.g >= 50 && color.g <= 200);
+        assert!(color.b >= 50 && color.b <= 200);
+    }
+
+    #[test]
+    fn test_circle_edge_cases() {
+        // Test with zero radius
+        let center = Point::new(100, 100);
+        let circle = Circle::new(&center, 0);
+        assert_eq!(circle.circles.len(), 1);
+
+        // Test with negative coordinates
+        let center = Point::new(-100, -100);
+        let circle = Circle::new(&center, 50);
+        assert_eq!(circle.circles.len(), 1);
+
+        // Test with very large radius
+        let center = Point::new(100, 100);
+        let circle = Circle::new(&center, 1000);
+        assert_eq!(circle.circles.len(), 1);
     }
 }

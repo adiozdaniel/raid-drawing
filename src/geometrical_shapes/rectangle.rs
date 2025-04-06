@@ -1,4 +1,4 @@
-use super::{Drawable, Point, Line};
+use super::{Drawable, Line, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
@@ -28,7 +28,6 @@ impl Rectangle {
         Rectangle { rects }
     }
 
-
     pub fn random(_p1: &Point, _p2: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
@@ -42,7 +41,11 @@ impl Rectangle {
                 rng.gen_range(100..255),
                 rng.gen_range(100..255),
             );
-            rects.push((pos.clone(), Point::new(pos.x + width, pos.y + height), color));
+            rects.push((
+                pos.clone(),
+                Point::new(pos.x + width, pos.y + height),
+                color,
+            ));
         }
 
         Rectangle { rects }
@@ -71,5 +74,88 @@ impl Drawable for Rectangle {
 
     fn color(&self) -> Color {
         Color::black()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_rectangle_new() {
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(100, 100);
+        let rect = Rectangle::new(&p1, &p2);
+
+        assert_eq!(rect.rects.len(), 1);
+        let (top_left, bottom_right, _) = &rect.rects[0];
+        assert_eq!(top_left.x, 100);
+        assert_eq!(top_left.y, 100);
+        assert_eq!(bottom_right.x, 300); // 100 + (100 + 100)
+        assert_eq!(bottom_right.y, 200); // 100 + (0 + 100)
+    }
+
+    #[test]
+    fn test_rectangle_random() {
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(800, 800);
+        let rect = Rectangle::random(&p1, &p2);
+
+        // Random rectangles should be between 2 and 4
+        assert!(rect.rects.len() >= 2 && rect.rects.len() <= 4);
+
+        // Check each rectangle's properties
+        for (top_left, bottom_right, _) in &rect.rects {
+            assert!(top_left.x >= 0 && top_left.x <= 800);
+            assert!(top_left.y >= 0 && top_left.y <= 800);
+            assert!(bottom_right.x > top_left.x);
+            assert!(bottom_right.y > top_left.y);
+            assert!(bottom_right.x - top_left.x >= 100 && bottom_right.x - top_left.x <= 250);
+            assert!(bottom_right.y - top_left.y >= 80 && bottom_right.y - top_left.y <= 180);
+        }
+    }
+
+    #[test]
+    fn test_rectangle_draw() {
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(100, 100);
+        let rect = Rectangle::new(&p1, &p2);
+
+        let mut image = Image::blank(800, 800);
+        rect.draw(&mut image);
+    }
+
+    #[test]
+    fn test_rectangle_color() {
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(100, 100);
+        let rect = Rectangle::new(&p1, &p2);
+
+        let black = Color::black();
+        let rect_color = rect.color();
+        assert_eq!(rect_color.r, black.r);
+        assert_eq!(rect_color.g, black.g);
+        assert_eq!(rect_color.b, black.b);
+    }
+
+    #[test]
+    fn test_rectangle_edge_cases() {
+        // Test with zero dimensions
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(0, 0);
+        let rect = Rectangle::new(&p1, &p2);
+        assert_eq!(rect.rects.len(), 1);
+
+        // Test with negative coordinates
+        let p1 = Point::new(-100, -100);
+        let p2 = Point::new(100, 100);
+        let rect = Rectangle::new(&p1, &p2);
+        assert_eq!(rect.rects.len(), 1);
+
+        // Test with very large coordinates
+        let p1 = Point::new(0, 0);
+        let p2 = Point::new(1000, 1000);
+        let rect = Rectangle::new(&p1, &p2);
+        assert_eq!(rect.rects.len(), 1);
     }
 }
