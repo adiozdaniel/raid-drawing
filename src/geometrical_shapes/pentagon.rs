@@ -1,5 +1,4 @@
-use super::{Drawable, Point};
-use crate::geometrical_shapes::Displayable;
+use super::{Drawable, Point, Line};
 use rand::Rng;
 use raster::{Color, Image};
 use std::f64::consts::PI;
@@ -10,6 +9,21 @@ pub struct Pentagon {
 }
 
 impl Pentagon {
+    pub fn new(center: &Point, radius: i32) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut pentagons = Vec::new();
+
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+
+        pentagons.push((center.clone(), radius, color.clone()));
+
+        Pentagon { pentagons }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
@@ -42,46 +56,6 @@ impl Pentagon {
     }
 }
 
-fn draw_line_with_color(
-    start: &Point,
-    end: &Point,
-    thickness: i32,
-    image: &mut Image,
-    color: &Color,
-) {
-    let dx = (end.x - start.x).abs();
-    let dy = (end.y - start.y).abs();
-    let sx = if start.x < end.x { 1 } else { -1 };
-    let sy = if start.y < end.y { 1 } else { -1 };
-    let err = dx - dy;
-
-    for t in 0..thickness {
-        let offset = t - thickness / 2;
-        let mut x = start.x;
-        let mut y = start.y;
-        let mut local_err = err;
-        loop {
-            if dx > dy {
-                image.display(x, y + offset, color.clone());
-            } else {
-                image.display(x + offset, y, color.clone());
-            }
-            if x == end.x && y == end.y {
-                break;
-            }
-            let e2 = 2 * local_err;
-            if e2 > -dy {
-                local_err -= dy;
-                x += sx;
-            }
-            if e2 < dx {
-                local_err += dx;
-                y += sy;
-            }
-        }
-    }
-}
-
 impl Drawable for Pentagon {
     fn draw(&self, image: &mut Image) {
         let thickness = 2;
@@ -93,7 +67,8 @@ impl Drawable for Pentagon {
                 let start = &vertices[i];
                 let end = &vertices[(i + 1) % 5];
 
-                draw_line_with_color(start, end, thickness, image, color);
+                let line = Line::from_points(start, end, thickness, color.clone());
+                line.draw(image);
             }
         }
     }

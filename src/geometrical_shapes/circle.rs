@@ -1,5 +1,4 @@
-use super::{Drawable, Point};
-use crate::geometrical_shapes::Displayable;
+use super::{Drawable, Point, Displayable};
 use rand::Rng;
 use raster::{Color, Image};
 
@@ -8,7 +7,22 @@ pub struct Circle {
     color: Color,
 }
 
+#[allow(dead_code)]
 impl Circle {
+    pub fn new(center: &Point, radius: i32) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut circles = Vec::new();
+        let color = Color::rgb(
+            rng.gen_range(50..200),
+            rng.gen_range(50..200),
+            rng.gen_range(50..200),
+        );
+
+        circles.push((center.clone(), radius));
+
+        Circle { circles, color }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();
