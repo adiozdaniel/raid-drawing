@@ -32,16 +32,13 @@ impl Rectangle {
 impl Drawable for Rectangle {
     fn draw(&self, image: &mut Image) {
         for (p1, p2) in &self.rects {
-            for i in 0..3 {
-                let offset = i - 1;
-                let top_right = Point::new(p2.x + offset, p1.y);
-                let bottom_left = Point::new(p1.x, p2.y + offset);
+            let top_right = Point::new(p2.x, p1.y);
+            let bottom_left = Point::new(p1.x, p2.y);
 
-                Line::from_points(p1, &top_right).draw(image);
-                Line::from_points(&top_right, p2).draw(image);
-                Line::from_points(p2, &bottom_left).draw(image);
-                Line::from_points(&bottom_left, p1).draw(image);
-            }
+            Line::from_points(p1, &top_right).draw(image);
+            Line::from_points(&top_right, p2).draw(image);
+            Line::from_points(p2, &bottom_left).draw(image);
+            Line::from_points(&bottom_left, p1).draw(image);
         }
     }
 
