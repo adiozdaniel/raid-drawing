@@ -7,7 +7,19 @@ pub struct Cubes {
     cubes: Vec<(Point, i32, Color)>,
 }
 
+#[allow(dead_code)]
 impl Cubes {
+    // `new` function to create a cube with a specific center, size, and color
+    pub fn new(center: &Point, size_point: &Point) -> Self {
+        let mut cubes = Vec::new();
+        let size = center.distance(size_point);
+        let color = raster::Color::rgb(255, 0, 0);
+
+        cubes.push((center.clone(), size as i32, color));
+
+        Cubes { cubes }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();
