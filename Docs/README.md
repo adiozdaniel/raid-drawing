@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 3em;">
 <img src="instructions.png" alt="Example Output" width="400" height="300">
 <p align="left">
-    Welcome to the <em>Geometric Shapes Drawing</em> tool — a Rust-powered application that renders 2D and basic 3D shapes to PNG images. Whether you're exploring computer graphics or testing your Rust skills, this project offers a modular and extensible foundation. View the project instructions <a href="Instructions.md" >here</a>.
+    Welcome to the <em>Geometric Shapes Drawing</em> tool — a Rust-powered application that renders 2D and basic 3D shapes to PNG images. Whether you're exploring computer graphics or testing your Rust skills, this project offers a modular and extensible foundation. View the project instructions <a href="INSTRUCTIONS.md" >here</a>.
 </p>
 </div>
 
@@ -154,7 +154,7 @@ make rebuild
 
   5. Submit a Pull Request 📝
 
-- *Read the [Contribution Guidelines](ONTRIBUTION.md) for more.*
+- *Read the [Contribution Guidelines](CONTRIBUTIONS.md) for more.*
 
 ## 📜 License
 
