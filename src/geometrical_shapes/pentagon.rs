@@ -9,6 +9,21 @@ pub struct Pentagon {
 }
 
 impl Pentagon {
+    pub fn new(center: &Point, radius: i32) -> Self {
+        let mut rng = rand::thread_rng();
+        let mut pentagons = Vec::new();
+
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+
+        pentagons.push((center.clone(), radius, color.clone()));
+
+        Pentagon { pentagons }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
