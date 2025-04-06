@@ -9,10 +9,9 @@ pub struct Circle {
 
 #[allow(dead_code)]
 impl Circle {
-    pub fn new(center: &Point, radius_point: &Point) -> Self {
+    pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();
-        let radius = center.distance(radius_point);
         let color = Color::rgb(
             rng.gen_range(50..200),
             rng.gen_range(50..200),
