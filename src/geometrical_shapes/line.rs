@@ -50,7 +50,23 @@ pub struct Line {
     color: Color,
 }
 
+#[allow(dead_code)]
 impl Line {
+    pub fn new(p1: &Point, p2: &Point) -> Self {
+        let mut rng = rand::thread_rng();
+
+        Line {
+            start: p1.clone(),
+            end: p2.clone(),
+            thickness: rng.gen_range(2..5),
+            color: Color::rgb(
+                rng.gen_range(50..200),
+                rng.gen_range(50..200),
+                rng.gen_range(50..200),
+            ),
+        }
+    }
+
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         Line {
