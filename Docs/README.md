@@ -113,7 +113,7 @@ make rebuild
 ├── src/
 │   ├── geometrical_shapes/
 │   |    ├── circle.rs
-│   |    └── cube.rs
+│   |    ├── cube.rs
 │   |    ├── line.rs
 │   |    ├── mod.rs
 │   |    ├── pentagon.rs
