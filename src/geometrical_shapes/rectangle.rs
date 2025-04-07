@@ -2,6 +2,8 @@ use super::{Drawable, Line, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
+/// Represents a rectangle composed of two diagonal points and a color
+/// Can draw itself as a bordered shape on an image
 #[derive(Debug)]
 pub struct Rectangle {
     rects: Vec<(Point, Point, Color)>,
@@ -9,6 +11,9 @@ pub struct Rectangle {
 
 #[allow(dead_code)]
 impl Rectangle {
+    /// Creates a new rectangle from two given points
+    /// Calculates width and height by summing coordinates
+    /// Assigns a random bright color (RGB 100–254)
     pub fn new(p1: &Point, p2: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
@@ -28,6 +33,8 @@ impl Rectangle {
         Rectangle { rects }
     }
 
+    /// Generates a rectangle at a random position with random size and color
+    /// Position is randomly chosen, size is within defined bounds
     pub fn random(_p1: &Point, _p2: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
@@ -52,6 +59,8 @@ impl Rectangle {
 
 //
 impl Drawable for Rectangle {
+    /// Draws each rectangle by rendering its edges as lines
+    /// Uses thickness of 2 pixels for each edge
     fn draw(&self, image: &mut Image) {
         let thickness = 2;
 
@@ -71,15 +80,18 @@ impl Drawable for Rectangle {
         }
     }
 
+    /// Returns a fallback color for the rectangle
     fn color(&self) -> Color {
         Color::black()
     }
 }
 
+// Unit tests for Rectangle
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    // Test basic rectangle creation and point placement
     #[test]
     fn test_rectangle_new() {
         let p1 = Point::new(0, 0);
@@ -94,6 +106,7 @@ mod tests {
         assert_eq!(bottom_right.y, 200); // 100 + (0 + 100)
     }
 
+    // Test randomly generated rectangle is within bounds and sized correctly
     #[test]
     fn test_rectangle_random() {
         let p1 = Point::new(0, 0);
@@ -111,6 +124,7 @@ mod tests {
         }
     }
 
+    // Tests that drawing a rectangle does not panic or error out
     #[test]
     fn test_rectangle_draw() {
         let p1 = Point::new(0, 0);
@@ -121,6 +135,7 @@ mod tests {
         rect.draw(&mut image);
     }
 
+    // Tests that the color method returns a color.
     #[test]
     fn test_rectangle_color() {
         let p1 = Point::new(0, 0);
@@ -134,6 +149,7 @@ mod tests {
         assert_eq!(rect_color.b, black.b);
     }
 
+    // Test edge cases
     #[test]
     fn test_rectangle_edge_cases() {
         // Test with zero dimensions

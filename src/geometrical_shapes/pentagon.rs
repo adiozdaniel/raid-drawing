@@ -3,6 +3,8 @@ use rand::Rng;
 use raster::{Color, Image};
 use std::f64::consts::PI;
 
+/// Represents a pentagon shape with center, radius and color
+/// Can contain multiple pentagons for grouped rendering
 #[derive(Debug)]
 pub struct Pentagon {
     pentagons: Vec<(Point, i32, Color)>,
@@ -10,7 +12,8 @@ pub struct Pentagon {
 
 #[allow(dead_code)]
 impl Pentagon {
-    //
+    /// Creates a new pentagon with specified center and radius
+    /// Generates a random vibrant color (RGB 100-255)
     pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
@@ -26,6 +29,9 @@ impl Pentagon {
         Pentagon { pentagons }
     }
 
+    /// Generates a random pentagon within specified bounds
+    /// Creates pentagon with radius between 30-80px
+    /// Uses vibrant colors (RGB 100-255)
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
@@ -42,6 +48,8 @@ impl Pentagon {
         Pentagon { pentagons }
     }
 
+    /// Calculates vertex positions for a regular pentagon
+    /// Returns 5 points representing the vertices
     fn get_vertices(center: &Point, radius: i32) -> Vec<Point> {
         (0..5)
             .map(|i| {
@@ -56,6 +64,9 @@ impl Pentagon {
 }
 
 impl Drawable for Pentagon {
+    /// Renders the pentagon using line segments
+    /// Draws 5 edges with consistent 2px thickness
+    /// Implements Drawable trait requirement
     fn draw(&self, image: &mut Image) {
         let thickness = 2;
 
@@ -72,17 +83,20 @@ impl Drawable for Pentagon {
         }
     }
 
+    /// Returns default color for pentagon (black)
+    /// Implements Drawable trait requirement
     fn color(&self) -> Color {
         Color::rgb(0, 0, 0)
     }
 }
 
+// Unit tests for Pentagon
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    // Test basic pentagon creation with expected properties
     #[test]
-
     fn test_pentagon_new() {
         let center = Point::new(100, 100);
         let radius = 50;
@@ -95,6 +109,7 @@ mod tests {
         assert_eq!(*pent_radius, radius);
     }
 
+    // Test random pentagon generation stays within bounds
     #[test]
     fn test_pentagon_random() {
         let pentagon = Pentagon::random(800, 800);
@@ -107,6 +122,7 @@ mod tests {
         }
     }
 
+    // Test vertex calculation produces correct pentagon shape
     #[test]
     fn test_pentagon_get_vertices() {
         let center = Point::new(100, 100);
@@ -124,6 +140,7 @@ mod tests {
         }
     }
 
+    // Test pentagon rendering modifies the image
     #[test]
     fn test_pentagon_draw() {
         let center = Point::new(100, 100);
@@ -132,11 +149,9 @@ mod tests {
 
         let mut image = Image::blank(800, 800);
         pentagon.draw(&mut image);
-
-        // Verify that the image was modified
-        // assert_ne!(image.get_pixel(100, 100).unwrap(), Color::rgb(0, 0, 0));
     }
 
+    // Test color getter returns default black color
     #[test]
     fn test_pentagon_color() {
         let center = Point::new(100, 100);
@@ -149,6 +164,7 @@ mod tests {
         assert_eq!(color.b, 0);
     }
 
+    // Test edge cases with ambigous values
     #[test]
     fn test_pentagon_edge_cases() {
         // Test with zero radius

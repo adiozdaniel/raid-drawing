@@ -2,6 +2,8 @@ use super::{Displayable, Drawable};
 use rand::Rng;
 use raster::{Color, Image};
 
+/// Represents a 2D point with coordinates and color
+/// Can be rendered as a small 3x3 pixel area for visibility
 #[derive(Debug, Clone)]
 pub struct Point {
     pub x: i32,
@@ -10,6 +12,8 @@ pub struct Point {
 }
 
 impl Point {
+    /// Creates a new point at specified coordinates
+    /// Generates a random moderate color (RGB 50-200)
     pub fn new(x: i32, y: i32) -> Self {
         Point {
             x,
@@ -22,7 +26,9 @@ impl Point {
         }
     }
 
-    //
+    /// Generates a random point within specified bounds
+    /// Creates point with coordinates within width/height limits
+    /// Uses random moderate color (RGB 50-200)
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         Point {
@@ -38,6 +44,8 @@ impl Point {
 }
 
 impl Drawable for Point {
+    /// Renders the point as a 3x3 pixel area
+    /// Implements Drawable trait requirement
     fn draw(&self, image: &mut Image) {
         for dx in -1..=1 {
             for dy in -1..=1 {
@@ -46,15 +54,19 @@ impl Drawable for Point {
         }
     }
 
+    /// Returns the color of the point
+    /// Implements Drawable trait requirement
     fn color(&self) -> Color {
         self.color.clone()
     }
 }
 
+// Unit tests for Point
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    // Test basic point creation with expected properties
     #[test]
     fn test_point_new() {
         let point = Point::new(100, 100);
@@ -66,6 +78,7 @@ mod tests {
         assert!(point.color.b >= 50 && point.color.b <= 200);
     }
 
+    // Test random point generation stays within bounds
     #[test]
     fn test_point_random() {
         let point = Point::random(800, 800);
@@ -77,6 +90,7 @@ mod tests {
         assert!(point.color.b >= 50 && point.color.b <= 200);
     }
 
+    // Test point drawing affects a 3x3 pixel area
     #[test]
     fn test_point_draw() {
         let point = Point::new(100, 100);
@@ -97,6 +111,7 @@ mod tests {
         }
     }
 
+    // Test color getter returns correct color
     #[test]
     fn test_point_color() {
         let point = Point::new(100, 100);
@@ -107,6 +122,7 @@ mod tests {
         assert!(color.b >= 50 && color.b <= 200);
     }
 
+    // Test edge cases including negative and large coordinates
     #[test]
     fn test_point_edge_cases() {
         // Test with negative coordinates

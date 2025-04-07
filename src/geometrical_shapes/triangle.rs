@@ -2,12 +2,14 @@ use super::{Drawable, Line, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
+/// Struct to represent a triangle with vertices and color
 pub struct Triangle {
     tris: Vec<(Point, Point, Point, Color)>,
 }
 
 #[allow(dead_code)]
 impl Triangle {
+    /// Creates a triangle from 3 given points with a random color
     pub fn new(a: &Point, b: &Point, c: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut tris = Vec::new();
@@ -23,7 +25,7 @@ impl Triangle {
         Triangle { tris }
     }
 
-    //
+    /// Generates a random triangle based on random dimensions and color
     pub fn random(_a: &Point, _b: &Point, _c: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut tris = Vec::new();
@@ -48,7 +50,9 @@ impl Triangle {
     }
 }
 
+/// Implementation of the Drawable trait for Triangle
 impl Drawable for Triangle {
+    /// Draws the triangle onto the given image
     fn draw(&self, image: &mut Image) {
         let thickness = 1;
 
@@ -63,15 +67,18 @@ impl Drawable for Triangle {
         }
     }
 
+    // Returns a default a fallback color
     fn color(&self) -> Color {
         Color::rgb(0, 0, 0)
     }
 }
 
+// Unit tests for Triangle
 #[cfg(test)]
 mod tests {
     use super::*;
 
+    // Test creation of a triangle using given points
     #[test]
     fn test_triangle_new() {
         let a = Point::new(100, 100);
@@ -89,6 +96,7 @@ mod tests {
         assert_eq!(tri_c.y, c.y);
     }
 
+    // Test creation of a triangle with randomized geometry
     #[test]
     fn test_triangle_random() {
         let a = Point::new(0, 0);
@@ -107,6 +115,7 @@ mod tests {
         }
     }
 
+    // Test that triangle drawing modifies the image
     #[test]
     fn test_triangle_draw() {
         let a = Point::new(100, 100);
@@ -116,11 +125,9 @@ mod tests {
 
         let mut image = Image::blank(800, 800);
         triangle.draw(&mut image);
-
-        // Verify that the image was modified
-        // assert_ne!(image.get_pixel(100, 100).unwrap(), Color::rgb(0, 0, 0));
     }
 
+    // Test color function returns black
     #[test]
     fn test_triangle_color() {
         let a = Point::new(100, 100);

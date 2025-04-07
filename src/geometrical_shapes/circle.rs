@@ -2,14 +2,18 @@ use super::{Displayable, Drawable, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
+/// Represents a circle shape with center points and radii
+/// Contains a collection of circles (for grouped rendering)
+/// and a shared color for all circles in the collection
 pub struct Circle {
     circles: Vec<(Point, i32)>,
     color: Color,
 }
 
-// 
 #[allow(dead_code)]
 impl Circle {
+    /// Creates a new circle with specified center and radius
+    /// Generates a random color in moderate RGB range (50-200)
     pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();
@@ -24,6 +28,9 @@ impl Circle {
         Circle { circles, color }
     }
 
+    /// Generates a random circle within specified bounds
+    /// Has 70% chance to generate a circle, with 30% chance
+    /// of being a large circle (150-300px radius)
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut circles = Vec::new();
@@ -48,6 +55,9 @@ impl Circle {
 }
 
 impl Drawable for Circle {
+    /// Draws the circle using midpoint circle algorithm
+    /// Renders with 2-pixel thickness for visibility
+    /// Implements the Drawable trait requirement
     fn draw(&self, image: &mut Image) {
         for (center, radius) in &self.circles {
             let mut x = *radius;
@@ -83,11 +93,14 @@ impl Drawable for Circle {
         }
     }
 
+    /// Returns the color of the circle
+    /// Implements the Drawable trait requirement
     fn color(&self) -> Color {
         self.color.clone()
     }
 }
 
+// Unit tests for Circle
 #[cfg(test)]
 mod tests {
     use super::*;

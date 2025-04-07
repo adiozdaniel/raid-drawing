@@ -2,6 +2,8 @@ use super::{Drawable, Line, Point};
 use rand::Rng;
 use raster::{Color, Image};
 
+/// Represents a 3D cube in isometric projection
+/// Contains vertices, edges, and rendering properties
 #[derive(Debug)]
 pub struct Cubes {
     cubes: Vec<(Point, i32, Color)>,
@@ -9,7 +11,8 @@ pub struct Cubes {
 
 #[allow(dead_code)]
 impl Cubes {
-    // `new` function to create a cube with a specific center, size, and color
+    /// Creates a new cube with specified center and size
+    /// Generates a random color in moderate RGB range (50-200)
     pub fn new(center: &Point, size: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();
@@ -25,7 +28,9 @@ impl Cubes {
         Cubes { cubes }
     }
 
-    //
+    /// Generates a random cube within specified bounds
+    /// Creates cubes with size between 30-80px
+    /// Uses vibrant colors (RGB 150-255)
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();
@@ -42,6 +47,8 @@ impl Cubes {
         Cubes { cubes }
     }
 
+    /// Calculates isometric projection vertices for cube rendering
+    /// Returns 8 points representing cube vertices in 2D space
     fn get_isometric_projection(center: &Point, size: i32) -> [Point; 8] {
         let x = center.x;
         let y = center.y;
@@ -60,6 +67,9 @@ impl Cubes {
 }
 
 impl Drawable for Cubes {
+    /// Renders cube using isometric projection
+    /// Draws 12 edges with consistent 2px thickness
+    /// Implements Drawable trait requirement
     fn draw(&self, image: &mut Image) {
         for (center, size, color) in &self.cubes {
             let vertices = Cubes::get_isometric_projection(center, *size);
@@ -94,11 +104,14 @@ impl Drawable for Cubes {
         }
     }
 
+    /// Returns a fallback color for cubes (black)
+    /// Implements Drawable trait requirement
     fn color(&self) -> Color {
         Color::rgb(0, 0, 0)
     }
 }
 
+// Unit tests for Cubes
 #[cfg(test)]
 mod tests {
     use super::*;
