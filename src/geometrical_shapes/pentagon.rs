@@ -10,7 +10,7 @@ pub struct Pentagon {
 
 #[allow(dead_code)]
 impl Pentagon {
-    // 
+    //
     pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
@@ -30,17 +30,14 @@ impl Pentagon {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();
 
-        let count = rng.gen_range(3..6);
-        for _ in 0..count {
-            let center = Point::random(width, height);
-            let radius = rng.gen_range(30..80);
-            let color = Color::rgb(
-                rng.gen_range(100..255),
-                rng.gen_range(100..255),
-                rng.gen_range(100..255),
-            );
-            pentagons.push((center, radius, color));
-        }
+        let center = Point::random(width, height);
+        let radius = rng.gen_range(30..80);
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+        pentagons.push((center, radius, color));
 
         Pentagon { pentagons }
     }
@@ -101,9 +98,6 @@ mod tests {
     #[test]
     fn test_pentagon_random() {
         let pentagon = Pentagon::random(800, 800);
-
-        // Random pentagons should be between 3 and 6
-        assert!(pentagon.pentagons.len() >= 3 && pentagon.pentagons.len() <= 6);
 
         // Check each pentagon's properties
         for (center, radius, _color) in &pentagon.pentagons {
