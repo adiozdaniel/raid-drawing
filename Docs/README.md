@@ -394,7 +394,7 @@ c: A reference to the third Point (vertex of the triangle).
 
 #### Returns
 
-A new instance of Triangle.
+A new instance of a stationary Triangle, add the code below to the `main.rs`:
 
 Example Usage in `main.rs`
 
@@ -420,11 +420,19 @@ A new instance of Triangle containing between 2 and 3 randomly generated triangl
 
 Example Usage in main.rs
 
-To generate and draw 2 to 3 random triangles, use the following code snippet:
+To generate and draw a randomly positioned triangle, use the following code snippet:
 
 ```rs
 let random_triangle = gs::Triangle::random(&gs::Point::new(0, 0), &gs::Point::new(0, 0), &gs::Point::new(0, 0));
 random_triangle.draw(&mut image);
+```
+
+To generate and draw randomly positioned triangles, use the following code snippet:
+
+```rs
+for _ in 1..7 {
+  gs::Triangle::random(&gs::Point::new(0, 0), &gs::Point::new(0, 0), &gs::Point::new(0, 0)).draw(&mut image);
+}
 ```
 
 ### 📄 File circle.rs (in geometrical_shapes module)
@@ -448,7 +456,7 @@ radius: An integer that specifies the radius of the circle.
 A new instance of Circle.
 
 Example Usage in main.rs
-To create a single, specific circle using this function, use the following code snippet in your main.rs:
+To create a single, specificly positioned circle, use  the following code snippet in your `main.rs`:
 
 ```rs
 let center = gs::Point::new(500, 500);
@@ -470,12 +478,21 @@ height: The height of the image area to constrain random placement of the circle
 A new instance of Circle containing a randomly generated circle.
 
 Example Usage in main.rs
-To generate and draw a random circle, use the following code snippet:
+To generate and draw a random circle with a random radius length, use the following code snippet:
 
 ```rs
 let random_circle = gs::Circle::random(image.width, image.height);
 random_circle.draw(&mut image);
 ```
+
+For multiple circles, for instance 7, add the following codeto the `main.rs`:
+
+```rs
+for _ in 1..8 {
+  gs::Circle::random(image.width, image.height).draw(&mut image);
+}
+```
+
 
 ### 📄 File rectangle.rs (in geometric_shapes module)
 
@@ -501,10 +518,7 @@ Example Usage in main.rs
 To create a single, specific rectangle using this function, use the following code snippet in your main.rs:
 
 ```rs
-let point1 = gs::Point::new(100, 100);
-let point2 = gs::Point::new(300, 200);
-let rectangle = gs::Rectangle::new(&point1, &point2);
-rectangle.draw(&mut image);
+let rectangle = gs::Rectangle::new(&gs::Point::new(150, 150), &gs::Point::new(50, 50));
 ```
 
 `random`
@@ -518,12 +532,27 @@ This function generates between 2 and 3 random rectangles, each with random dime
 
 A new instance of Rectangle containing randomly generated rectangles.
 
-Example Usage in main.rs
-To generate and draw random rectangles, use the following code snippet:
+Example Usage in `main.rs`
+
+We can generate a randomly positioned rectangle by using the random method. To do this we would add te following code snippet to the `main.rs` file:
 
 ```rs
-let random_rectangles = gs::Rectangle::random(&gs::Point::new(0, 0), &gs::Point::new(0, 0));
-random_rectangles.draw(&mut image);
+let rectangle = gs::Rectangle::random(
+    &gs::Point::new(500, 500),
+    &gs::Point::new(250, 700),
+);
+rectangle.draw(&mut image);
+```
+
+If we needed to generate a number of rectangles, say 5, we would use the code below:
+
+```rs
+for _ in 1..6 {
+    gs::Rectangle::random(
+    &gs::Point::new(500, 500),
+    &gs::Point::new(250, 700),
+).draw(&mut image);
+}
 ```
 
 ### 📄 File cubes.rs (in geometric_shapes module)
@@ -544,12 +573,19 @@ cube.draw(&mut image);
 new(center: &Point, size: i32): Creates a new cube centered at a given point with a specified size.
 random(width: i32, height: i32): Generates a random number of cubes (between 3 to 6), each with a random center, size, and color.
 
-**Drawing Multiple Cubes**
-To draw more than one cube, you can leverage a loop that creates multiple instances of the Cubes. You can vary the center position and size based on some logic or randomization to generate a more diverse set of cubes. Here’s how you can implement it. Add the following code snippet to your main.rs file:
+Similarly we can generate multiple number of cubes by using the random method. We will generate a random positioned pentgon. To do this we would add te following code snippet to your main.rs file:
 
 ```rs
 let cubes = gs::Cubes::random(image.width, image.height);
 cubes.draw(&mut image);
+```
+
+Similarly if we needed to generate a number of cubes, say 5, we would use the code below:
+
+```rs
+  for _ in 1..6 {
+      gs::Cubes::random(image.width, image.height).draw(&mut image);
+  }
 ```
 
 ### 📄 File pentagons.rs (in geometric_shapes module)
@@ -565,12 +601,14 @@ To create and draw a pentagon in the main.rs file, the following code snippet ca
   pentagon.draw(&mut image);
 ```
 
-Similarly we can generate multiple number of pentagons by using the random method. We willl generate a rnandom number between 2 and 6 and draw them on the image. To do this we would add te following code snippet to your main.rs file:
+Similarly we can generate multiple number of pentagons by using the random method. We will generate a random positioned pentgon. To do this we would add te following code snippet to your main.rs file:
 
 ```rs
   let pentagon = gs::Pentagon::random(image.width, image.height);
   pentagon.draw(&mut image);
 ```
+
+Similarly if we needed to generate a number of pentgons, say 5, we would use the code below:
 
 ```rs
   for _ in 1..6 {
