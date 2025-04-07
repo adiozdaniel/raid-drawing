@@ -5,23 +5,18 @@ We're thrilled you're considering contributing to this project. Whether it's a b
 
 ## 🛠️ How to Contribute
 
-1. **Fork the repository**  
-   Click the "Fork" button at the top right of this repo to create your own copy.
+- *We welcome PRs!* 🚀
 
-2. **Clone your fork**
+  1. Fork the repo
 
-```bash
-git clone https://github.com/your-username/drawing.git
-cd drawing
-```
+  2. Create a feature branch:
+  git checkout -b feature/your-feature
 
-3. **Create a new branch**
+  3. Commit changes:
+  git commit -m "Add new feature"
 
-```sh
-git checkout -b feature/your-feature-name
+  4. Push to your branch:
+  git push origin feature/your-feature
 
-```
-
-4. **Make your changes**
-
-Work on your feature, fix, or improvement.
+  5. Submit a Pull Request 📝
+  
