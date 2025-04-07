@@ -7,6 +7,7 @@ pub struct Circle {
     color: Color,
 }
 
+// 
 #[allow(dead_code)]
 impl Circle {
     pub fn new(center: &Point, radius: i32) -> Self {

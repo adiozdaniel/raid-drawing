@@ -10,6 +10,7 @@ pub struct Pentagon {
 
 #[allow(dead_code)]
 impl Pentagon {
+    // 
     pub fn new(center: &Point, radius: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut pentagons = Vec::new();

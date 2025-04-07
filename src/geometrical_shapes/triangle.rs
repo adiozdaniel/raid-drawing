@@ -23,6 +23,7 @@ impl Triangle {
         Triangle { tris }
     }
 
+    // 
     pub fn random(_a: &Point, _b: &Point, _c: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut tris = Vec::new();

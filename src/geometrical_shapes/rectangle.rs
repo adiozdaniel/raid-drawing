@@ -52,6 +52,7 @@ impl Rectangle {
     }
 }
 
+// 
 impl Drawable for Rectangle {
     fn draw(&self, image: &mut Image) {
         let thickness = 2;

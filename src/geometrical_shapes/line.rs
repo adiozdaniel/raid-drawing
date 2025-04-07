@@ -9,6 +9,7 @@ impl PartialEq for Point {
     }
 }
 
+// 
 fn draw_line_with_color(
     start: &Point,
     end: &Point,

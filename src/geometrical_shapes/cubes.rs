@@ -25,6 +25,7 @@ impl Cubes {
         Cubes { cubes }
     }
 
+    //
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();

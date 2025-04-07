@@ -22,6 +22,7 @@ impl Point {
         }
     }
 
+    //
     pub fn random(width: i32, height: i32) -> Self {
         let mut rng = rand::thread_rng();
         Point {
