@@ -8,7 +8,10 @@ debug:
 	RUST_BACKTRACE=1 cargo run
 
 clean:
-	cargo clean
+	cargo clean 
+
+test:
+	cargo test
 
 rebuild:
 	cargo clean && cargo build

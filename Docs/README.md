@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 3em;">
 <img src="media/instructions.png" alt="Example Output" width="400" height="300">
 <p align="left">
-    Welcome to the <em>Geometric Shapes Drawing</em> tool — a Rust-powered application that renders 2D and basic 3D shapes to PNG images. Whether you're exploring computer graphics or testing your Rust skills, this project offers a modular and extensible foundation. View the project instructions <a href="https://learn.zone01kisumu.ke/git/adaniel/drawing/src/branch/main/Docs/INSTRUCTIONS.md">Here</a> or <a href="INSTRUCTIONS.md" >here</a>. With the comprehensive details outlined in the instructions.md, you can seamlessly integrate the code into your main.rs file. Simply paste it as is, and your program will be ready to run flawlessly—no additional modifications required. Enjoy coding with ease and sophistication!
+    Welcome to the <em>Geometric Shapes Drawing</em> tool — a Rust-powered application that renders 2D and basic 3D shapes to PNG images. Whether you're exploring computer graphics or testing your Rust skills, this project offers a modular and extensible foundation. View the project instructions <a href="https://learn.zone01kisumu.ke/git/adaniel/drawing/src/branch/main/Docs/INSTRUCTIONS.md">Here</a> or <a href="INSTRUCTIONS.md" >here</a>. With the comprehensive details outlined in the instructions.md, you can seamlessly integrate the code into the `main.rs` file. Simply paste it as is, and your program will be ready to run flawlessly—no additional modifications required. Enjoy coding with ease and sophistication!
 </p>
 </div>
 
@@ -137,7 +137,15 @@ make clean
 make rebuild
 ```
 
-</div></div>
+</div>  <div style="border-left: 1px solid #ccc; height: auto;"></div> <div style="flex: 1">
+
+### 🧪 Run tests
+
+```sh
+make test
+```
+
+</div> </div>
 
 - The Makefile simplifies building, running, and cleaning up. Modify it to extend functionality as needed.
 
