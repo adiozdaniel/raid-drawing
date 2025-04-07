@@ -30,16 +30,14 @@ impl Cubes {
         let mut rng = rand::thread_rng();
         let mut cubes = Vec::new();
 
-        for _ in 0..rng.gen_range(3..6) {
-            let center = Point::random(width, height);
-            let size = rng.gen_range(30..80);
-            let color = Color::rgb(
-                rng.gen_range(150..255),
-                rng.gen_range(150..255),
-                rng.gen_range(150..255),
-            );
-            cubes.push((center, size, color));
-        }
+        let center = Point::random(width, height);
+        let size = rng.gen_range(30..80);
+        let color = Color::rgb(
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+        );
+        cubes.push((center, size, color));
 
         Cubes { cubes }
     }
@@ -124,9 +122,6 @@ mod tests {
     #[test]
     fn test_cubes_random() {
         let cubes = Cubes::random(800, 800);
-
-        // Random cubes should be between 3 and 6
-        assert!(cubes.cubes.len() >= 3 && cubes.cubes.len() <= 6);
 
         // Check each cube's properties
         for (center, size, _color) in &cubes.cubes {
