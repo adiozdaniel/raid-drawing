@@ -23,28 +23,26 @@ impl Triangle {
         Triangle { tris }
     }
 
-    // 
+    //
     pub fn random(_a: &Point, _b: &Point, _c: &Point) -> Self {
         let mut rng = rand::thread_rng();
         let mut tris = Vec::new();
 
-        for _ in 0..rng.gen_range(2..4) {
-            let base = Point::random(800, 800);
-            let height = rng.gen_range(80..180);
-            let width = rng.gen_range(60..150);
-            let color = Color::rgb(
-                rng.gen_range(150..255),
-                rng.gen_range(150..255),
-                rng.gen_range(150..255),
-            );
+        let base = Point::random(800, 800);
+        let height = rng.gen_range(80..180);
+        let width = rng.gen_range(60..150);
+        let color = Color::rgb(
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+            rng.gen_range(150..255),
+        );
 
-            tris.push((
-                base.clone(),
-                Point::new(base.x + width, base.y),
-                Point::new(base.x + width / 2, base.y - height),
-                color,
-            ));
-        }
+        tris.push((
+            base.clone(),
+            Point::new(base.x + width, base.y),
+            Point::new(base.x + width / 2, base.y - height),
+            color,
+        ));
 
         Triangle { tris }
     }
@@ -97,9 +95,6 @@ mod tests {
         let b = Point::new(800, 0);
         let c = Point::new(400, 800);
         let triangle = Triangle::random(&a, &b, &c);
-
-        // Random triangles should be between 2 and 4
-        assert!(triangle.tris.len() >= 2 && triangle.tris.len() <= 4);
 
         // Check each triangle's properties
         for (base, right, top, _color) in &triangle.tris {
