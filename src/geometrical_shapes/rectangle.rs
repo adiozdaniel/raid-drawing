@@ -32,27 +32,25 @@ impl Rectangle {
         let mut rng = rand::thread_rng();
         let mut rects = Vec::new();
 
-        for _ in 0..rng.gen_range(2..4) {
-            let width = rng.gen_range(100..250);
-            let height = rng.gen_range(80..180);
-            let pos = Point::random(800, 800);
-            let color = Color::rgb(
-                rng.gen_range(100..255),
-                rng.gen_range(100..255),
-                rng.gen_range(100..255),
-            );
-            rects.push((
-                pos.clone(),
-                Point::new(pos.x + width, pos.y + height),
-                color,
-            ));
-        }
+        let width = rng.gen_range(100..250);
+        let height = rng.gen_range(80..180);
+        let pos = Point::random(800, 800);
+        let color = Color::rgb(
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+            rng.gen_range(100..255),
+        );
+        rects.push((
+            pos.clone(),
+            Point::new(pos.x + width, pos.y + height),
+            color,
+        ));
 
         Rectangle { rects }
     }
 }
 
-// 
+//
 impl Drawable for Rectangle {
     fn draw(&self, image: &mut Image) {
         let thickness = 2;
@@ -101,9 +99,6 @@ mod tests {
         let p1 = Point::new(0, 0);
         let p2 = Point::new(800, 800);
         let rect = Rectangle::random(&p1, &p2);
-
-        // Random rectangles should be between 2 and 4
-        assert!(rect.rects.len() >= 2 && rect.rects.len() <= 4);
 
         // Check each rectangle's properties
         for (top_left, bottom_right, _) in &rect.rects {
