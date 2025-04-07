@@ -561,15 +561,21 @@ When the pentagon is drawn, the module calculates the five vertices based on the
 To create and draw a pentagon in the main.rs file, the following code snippet can be used:
 
 ```rs
-let pentagon = gs::Pentagon::new(&gs::Point::new(820, 800), 120);
-pentagon.draw(&mut image);
+  let pentagon = gs::Pentagon::new(&gs::Point::new(820, 800), 120);
+  pentagon.draw(&mut image);
 ```
 
 Similarly we can generate multiple number of pentagons by using the random method. We willl generate a rnandom number between 2 and 6 and draw them on the image. To do this we would add te following code snippet to your main.rs file:
 
 ```rs
-let pentagons = Pentagon::random(image.width, image.height);
-pentagons.draw(&mut image);
+  let pentagon = gs::Pentagon::random(image.width, image.height);
+  pentagon.draw(&mut image);
+```
+
+```rs
+  for _ in 1..6 {
+      gs::Pentagon::random(image.width, image.height).draw(&mut image);
+  }
 ```
 
 ---
