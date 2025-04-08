@@ -1,3 +1,8 @@
+# ignore all files in the target directory
 target/
 
+# ignore system generated files
 *.png
+
+# ignore build files
+Cargo.lock
